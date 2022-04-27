@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 14:13:23 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/16 11:54:39 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/18 18:38:53 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "so_long.h"
+#include <sys/types.h>
 
-void	init_game(t_game *game)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	ft_memset(&game, 0, sizeof(t_game));
-	game->fd = -1;
-}
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			idx;
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-
-	init_game(&game);
-	check_argc(argc, &game);
-	check_map(argv[1], &game);
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	idx = 0;
+	while (idx < n)
+	{
+		if (str1[idx] != str2[idx])
+			return (str1[idx] - str2[idx]);
+		idx++;
+	}
+	return (0);
 }

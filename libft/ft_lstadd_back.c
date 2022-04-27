@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 14:13:23 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/18 16:39:16 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/18 16:39:16 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "so_long.h"
 
-void	init_game(t_game *game)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	ft_memset(&game, 0, sizeof(t_game));
-	game->fd = -1;
-}
+	t_list	*back;
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-
-	init_game(&game);
-	check_argc(argc, &game);
-	check_map(argv[1], &game);
+	if (lst == 0)
+		return ;
+	if (*lst == 0)
+	{
+		*lst = new;
+		return ;
+	}
+	back = ft_lstlast(*lst);
+	back->next = new;
 }

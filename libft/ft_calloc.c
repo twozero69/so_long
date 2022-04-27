@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 14:13:23 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/18 16:38:45 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/18 16:38:45 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
-#include "so_long.h"
 
-void	init_game(t_game *game)
+void	*ft_calloc(size_t count, size_t size)
 {
-	ft_memset(&game, 0, sizeof(t_game));
-	game->fd = -1;
-}
+	void	*memory;
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-
-	init_game(&game);
-	check_argc(argc, &game);
-	check_map(argv[1], &game);
+	memory = malloc(count * size);
+	if (memory == 0)
+		return (0);
+	ft_memset(memory, 0, count * size);
+	return (memory);
 }

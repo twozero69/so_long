@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 14:13:23 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/16 11:10:22 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/22 22:29:38 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "so_long.h"
-
-void	init_game(t_game *game)
+char	*ft_strchr(const char *s, int c)
 {
-	ft_memset(&game, 0, sizeof(t_game));
-	game->fd = -1;
-}
+	char	character;
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-
-	init_game(&game);
-	check_argc(argc, &game);
-	check_map(argv[1], &game);
+	character = (char)c;
+	while (*s != '\0')
+	{
+		if (*s == character)
+			return ((char *)s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (0);
 }

@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 14:13:23 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/18 16:40:23 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/18 16:40:23 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "so_long.h"
 
-void	init_game(t_game *game)
+static int	my_abs(int n)
 {
-	ft_memset(&game, 0, sizeof(t_game));
-	game->fd = -1;
+	if (n < 0)
+		return (-n);
+	return (n);
 }
 
-int	main(int argc, char **argv)
+static void	put_nbr(int n, int fd)
 {
-	t_game	game;
+	if (n == 0)
+		return ;
+	put_nbr(n / 10, fd);
+	ft_putchar_fd(my_abs(n % 10) + '0', fd);
+}
 
-	init_game(&game);
-	check_argc(argc, &game);
-	check_map(argv[1], &game);
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (fd < 0)
+		return ;
+	if (n == 0)
+	{
+		ft_putchar_fd('0', fd);
+		return ;
+	}
+	if (n < 0)
+		ft_putchar_fd('-', fd);
+	put_nbr(n, fd);
 }

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 14:13:23 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/15 22:44:35 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/16 11:32:53 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "so_long.h"
+#include <sys/types.h>
 
-void	init_game(t_game *game)
+void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(&game, 0, sizeof(t_game));
-	game->fd = -1;
-}
+	unsigned char		*current_pt;
+	unsigned char		*last_pt;
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-
-	init_game(&game);
-	check_argc(argc, &game);
-	check_map(argv[1], &game);
+	current_pt = s;
+	last_pt = current_pt + n;
+	while (current_pt < last_pt)
+	{
+		*current_pt = 0;
+		current_pt++;
+	}
 }

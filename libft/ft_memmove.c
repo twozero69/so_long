@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 14:13:23 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/16 10:52:33 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/18 21:12:58 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "so_long.h"
 
-void	init_game(t_game *game)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	ft_memset(&game, 0, sizeof(t_game));
-	game->fd = -1;
-}
+	char	*char_dst;
+	char	*char_src;
+	size_t	idx;
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-
-	init_game(&game);
-	check_argc(argc, &game);
-	check_map(argv[1], &game);
+	if (dst == src || len == 0)
+		return (dst);
+	if (dst < src)
+		return (ft_memcpy(dst, src, len));
+	char_dst = (char *)dst;
+	char_src = (char *)src;
+	idx = len;
+	while (idx != 0)
+	{
+		idx--;
+		char_dst[idx] = char_src[idx];
+	}
+	return (dst);
 }

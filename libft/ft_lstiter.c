@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 23:35:27 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/26 23:51:30 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/18 16:39:31 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/18 16:39:31 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	check_argc(int argc)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (argc != 2)
+	if (lst == 0 || f == 0)
+		return ;
+	while (lst != 0)
 	{
-		argc_error(argc);
-		return (FALSE);
+		f(lst->content);
+		lst = lst->next;
 	}
-	return (TRUE);
-}
-
-int	check_map(t_game *game)
-{
-	return (TRUE);
 }

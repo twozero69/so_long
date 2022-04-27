@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 14:13:23 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/16 10:50:21 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/19 15:50:16 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "so_long.h"
+#include <sys/types.h>
 
-void	init_game(t_game *game)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	ft_memset(&game, 0, sizeof(t_game));
-	game->fd = -1;
-}
+	unsigned char	*uchar_dst;
+	unsigned char	*uchar_src;
+	size_t			idx;
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-
-	init_game(&game);
-	check_argc(argc, &game);
-	check_map(argv[1], &game);
+	if (dst == 0 && src == 0)
+		return (0);
+	uchar_dst = (unsigned char *)dst;
+	uchar_src = (unsigned char *)src;
+	idx = 0;
+	while (idx < n)
+	{
+		uchar_dst[idx] = uchar_src[idx];
+		idx++;
+	}
+	return (dst);
 }

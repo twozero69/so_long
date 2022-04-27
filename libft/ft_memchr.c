@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 14:13:23 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/16 11:41:54 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/18 21:25:39 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "so_long.h"
+#include <sys/types.h>
 
-void	init_game(t_game *game)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	ft_memset(&game, 0, sizeof(t_game));
-	game->fd = -1;
-}
+	unsigned char	*current_pt;
+	unsigned char	*last_pt;
+	unsigned char	character;
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-
-	init_game(&game);
-	check_argc(argc, &game);
-	check_map(argv[1], &game);
+	if (n == 0)
+		return (0);
+	current_pt = (unsigned char *)s;
+	last_pt = current_pt + n;
+	character = (unsigned char)c;
+	while (current_pt < last_pt)
+	{
+		if (*current_pt == character)
+			return ((void *)current_pt);
+		current_pt++;
+	}
+	return (0);
 }
