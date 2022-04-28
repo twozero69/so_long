@@ -6,18 +6,18 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:20:46 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 18:13:15 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/28 14:41:49 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "get_next_line.h"
 
-t_list	*make_new_list(t_list *prev, int fd)
+t_lst	*make_new_list(t_lst *prev, int fd)
 {
-	t_list	*new_list;
+	t_lst	*new_list;
 
-	new_list = (t_list *)malloc(sizeof(t_list));
+	new_list = (t_lst *)malloc(sizeof(t_lst));
 	if (new_list == 0)
 		return (0);
 	new_list->data = (char *)malloc(DATA_SIZE * sizeof(char));
@@ -35,7 +35,7 @@ t_list	*make_new_list(t_list *prev, int fd)
 	return (new_list);
 }
 
-static int	extend_data(t_list *list, ssize_t copy_count)
+static int	extend_data(t_lst *list, ssize_t copy_count)
 {
 	char	*new_data;
 	size_t	new_size;
@@ -63,7 +63,7 @@ static int	extend_data(t_list *list, ssize_t copy_count)
 	return (1);
 }
 
-int	my_strncpy(t_list *list, char *buffer, ssize_t copy_count)
+int	my_strncpy(t_lst *list, char *buffer, ssize_t copy_count)
 {
 	ssize_t	idx;
 
@@ -80,7 +80,7 @@ int	my_strncpy(t_list *list, char *buffer, ssize_t copy_count)
 	return (1);
 }
 
-int	refresh_data(t_list *list, char *data, ssize_t n_l_idx, ssize_t rd_cnt)
+int	refresh_data(t_lst *list, char *data, ssize_t n_l_idx, ssize_t rd_cnt)
 {
 	list->data = (char *)malloc(DATA_SIZE * sizeof(char));
 	if (list->data == 0)
@@ -99,10 +99,10 @@ int	refresh_data(t_list *list, char *data, ssize_t n_l_idx, ssize_t rd_cnt)
 	return (1);
 }
 
-void	clear_list(t_list *list)
+void	clear_list(t_lst *list)
 {
-	t_list	*prev;
-	t_list	*next;
+	t_lst	*prev;
+	t_lst	*next;
 
 	prev = list->prev;
 	next = list->next;

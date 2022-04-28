@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:29:49 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 18:49:19 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/28 15:26:53 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	check_height(char *file, t_game *game)
 	char	*line;
 	int		idx;
 
-	open_map(file, &map, game);
+	open_map(file, game);
 	line_count = 0;
 	while (TRUE)
 	{
@@ -50,7 +50,7 @@ static void	check_height(char *file, t_game *game)
 		line_count++;
 	}
 	close_map(game);
-	game->map = (char **)malloc((line_count + 1) * sizeof(char));
+	game->map = (char **)malloc((line_count + 1) * sizeof(char *));
 	exit_with_clib_error(game);
 	idx = 0;
 	while (idx <= line_count)
@@ -64,23 +64,22 @@ static void	check_height(char *file, t_game *game)
 static void	check_width(char *file, t_game *game)
 {
 	int		line_count;
-	size_t	line_length;
-	char	*line;
+	int		line_length;
 
-	open_map(file, &map, game);
+	open_map(file, game);
 	line_count = 0;
 	while (TRUE)
 	{
 		game->map[line_count] = get_next_line(game->fd);
 		exit_with_clib_error(game);
-		if (line == NULL)
+		if (game->map[line_count] == NULL)
 			break ;
-		line_count++;
-		line_length = ft_strlen(game->map[line_count]);
-		if (map->width == 0)
-			map->width = line_length;
-		if (map->width != line_length)
+		line_length = ft_strlen(game->map[line_count]) - 1;
+		if (game->width == 0)
+			game->width = line_length;
+		if (game->width != line_length)
 			exit_with_custom_error(3, game);
+		line_count++;
 	}
 	close_map(game);
 }
@@ -93,9 +92,9 @@ void	check_map(char *file, t_game *game)
 	check_height(file, game);
 	check_width(file, game);
 	row = 0;
-	col = 0;
 	while (row < game->height)
 	{
+		col = 0;
 		while (col < game->width)
 		{
 			check_char(game->map[row][col], game);

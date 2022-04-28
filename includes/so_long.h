@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:48:39 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 18:48:59 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/28 00:14:13 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define FALSE 0
 # define TRUE 1
-# define NULL 0
 
 typedef struct s_position
 {

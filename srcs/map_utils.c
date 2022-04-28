@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 23:35:27 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 18:49:13 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/28 15:22:06 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	check_argc(int argc, t_game *game)
 	if (argc > 2)
 		exit_with_custom_error(2, game);
 }
-
 
 void	check_char(char c, t_game *game)
 {
@@ -47,16 +46,22 @@ void	check_wall(int row, int col, char c, t_game *game)
 
 void	check_start(int row, int col, t_game *game)
 {
-	if (game->position.row != 0 && game->position.col != 0)
-		exit_with_custom_error(6, game);
-	game->position.row = row;
-	game->position.row = col;
+	if (game->position.row == 0 && game->position.col == 0)
+	{
+		game->position.row = row;
+		game->position.row = col;
+		game->map[row][col] = '0';
+		return ;
+	}
+	exit_with_custom_error(6, game);
 }
 
 void	check_token(t_game *game)
 {
+	if (game->position.row == 0 && game->position.col == 0)
+		exit_with_custom_error(6, game);
 	if (game->collectible == 0)
 		exit_with_custom_error(7, game);
-	else if (game->exit == 0)
+	if (game->exit == 0)
 		exit_with_custom_error(8, game);
 }

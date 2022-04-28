@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/27 14:13:23 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/28 11:58:46 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	init_game(t_game *game)
 {
-	ft_memset(&game, 0, sizeof(t_game));
+	ft_memset(game, 0, sizeof(t_game));
 	game->fd = -1;
 }
 

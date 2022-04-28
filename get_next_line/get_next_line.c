@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:20:35 by younglee          #+#    #+#             */
-/*   Updated: 2022/03/24 14:49:02 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/28 14:41:45 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static int	check_new_line(char *str, size_t length, ssize_t *new_line_idx)
 	return (0);
 }
 
-static t_list	*get_list_from_head(t_list *head, int fd)
+static t_lst	*get_lst_from_head(t_lst *head, int fd)
 {
-	t_list	*list;
-	t_list	*new_list;
+	t_lst	*list;
+	t_lst	*new_list;
 
 	list = head;
 	while (list->next != 0)
@@ -52,7 +52,7 @@ static t_list	*get_list_from_head(t_list *head, int fd)
 	return (new_list);
 }
 
-static char	*new_line_routine(t_list *list, ssize_t new_line_idx)
+static char	*new_line_routine(t_lst *list, ssize_t new_line_idx)
 {
 	char	*result;
 
@@ -63,7 +63,7 @@ static char	*new_line_routine(t_list *list, ssize_t new_line_idx)
 	return (result);
 }
 
-static char	*read_routine(t_list *list, char *buffer)
+static char	*read_routine(t_lst *list, char *buffer)
 {
 	ssize_t		read_count;
 	ssize_t		new_line_idx;
@@ -93,15 +93,15 @@ static char	*read_routine(t_list *list, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static t_list	head_arr[HASH_SIZE];
-	t_list			*list;
+	static t_lst	head_arr[HASH_SIZE];
+	t_lst			*list;
 	ssize_t			new_line_idx;
 	char			*buffer;
 	char			*result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	list = get_list_from_head(&head_arr[fd % HASH_SIZE], fd);
+	list = get_lst_from_head(&head_arr[fd % HASH_SIZE], fd);
 	if (list == 0)
 		return (0);
 	if (check_new_line(list->data, list->data_back, &new_line_idx))
