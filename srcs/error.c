@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:52:54 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/28 15:20:46 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/29 21:02:51 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "so_long.h"
-
-void	free_all_resources(t_game *game)
-{
-	int	idx;
-
-	if (game->fd != -1)
-		close(game->fd);
-	if (game->map != NULL)
-	{
-		idx = 0;
-		while (game->map[idx] != NULL)
-		{
-			free(game->map[idx]);
-			idx++;
-		}
-		free(game->map);
-		game->map = NULL;
-	}
-}
 
 void	exit_with_custom_error(int my_errno, t_game *game)
 {
@@ -70,4 +51,20 @@ void	exit_with_clib_error(t_game *game)
 	printf("clib error %d: %s\n", errno, strerror(errno));
 	free_all_resources(game);
 	exit(errno);
+}
+
+void	exit_with_mlx_error(int my_errno, t_game *game)
+{
+	printf("Error\n");
+	printf("mlx error %d: ", my_errno);
+	if (my_errno == 1)
+		printf("Failed to load image.\n");
+	else if (my_errno == 2)
+		printf("Failed to create window.\n");
+	else if (my_errno == 3)
+		printf("\n");
+	else
+		printf("Invalid error no.\n");
+	free_all_resources(game);
+	exit(my_errno);
 }

@@ -6,7 +6,7 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/27 17:39:24 by younglee          #+#    #+#              #
-#    Updated: 2022/04/28 11:53:03 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/04/29 22:28:02 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ INC			= -I./includes
 SRCS		= srcs/main.c \
 			srcs/error.c \
 			srcs/map.c \
-			srcs/map_utils.c
+			srcs/map_utils.c \
+			srcs/game.c \
+			srcs/free.c \
+			srcs/load.c
 OBJS		= ${SRCS:.c=.o}
 RM			= rm -f
 GNL_SRCS	= get_next_line/get_next_line.c \
@@ -25,27 +28,34 @@ GNL_SRCS	= get_next_line/get_next_line.c \
 GNL_OBJS	= ${GNL_SRCS:.c=.o}
 GNL_INC		= -I./get_next_line
 LIBFT		= -L./libft -lft
-LIBFT_A		= libft/libft.a
+LIBFT_LIB	= libft/libft.a
 LIBFT_INC	= -I./libft
+MLX			= -L./mlx -lmlx_Linux -lXext -lX11 -lm
+# MLX			= -L./mlx -lmlx -framework OpenGL -framework AppKit
+MLX_LIB		= mlx/libmlx_Linux.a
+MLX_INC		= -I./mlx
 
 .c.o:
-			${CC} ${CFLAGS} ${INC} ${GNL_INC} ${LIBFT_INC} -c $< -o ${<:.c=.o}
+			${CC} ${CFLAGS} ${INC} ${GNL_INC} ${LIBFT_INC} ${MLX_INC} -c $< -o ${<:.c=.o}
 
-${NAME}: 	${OBJS} ${GNL_OBJS} ${LIBFT_A}
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${GNL_OBJS} ${LIBFT}
+${NAME}: 	${OBJS} ${GNL_OBJS} ${LIBFT_LIB} ${MLX_LIB}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${GNL_OBJS} ${LIBFT} ${MLX}
 
 all:		${NAME}
 
-${LIBFT_A}:
+${LIBFT_LIB}:
 			make bonus -C libft
+
+${MLX_LIB}:
+			make -C mlx
 
 clean:
 			${RM} ${OBJS} ${GNL_OBJS}
 			make clean -C libft
+			make clean -C mlx
 
 fclean:		clean
-			${RM} ${NAME}
-			${RM} libft/libft.a
+			${RM} ${NAME} ${LIBFT_LIB} ${MLX_LIB}
 
 re:			fclean all
 
