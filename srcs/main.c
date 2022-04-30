@@ -6,14 +6,13 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/30 23:16:57 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/01 03:46:38 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft.h"
-#include "so_long.h"
 #include <unistd.h>
+#include "mlx.h"
+#include "so_long.h"
 
 static void	init_game(t_game *game)
 {
@@ -26,19 +25,15 @@ static void	play_game(t_game *game)
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		exit_with_mlx_error(1, game);
-	game->window = mlx_new_window(\
-		game->mlx, \
-		game->width * IMG_SIZE, \
-		game->height * IMG_SIZE, \
-		"so_long"\
-	);
+	game->window = mlx_new_window(game->mlx, game->width * IMG_SIZE, \
+	game->height * IMG_SIZE, "so_long");
 	if (game->window == NULL)
 		exit_with_mlx_error(3, game);
 	load_images(game);
 	mlx_hook(game->window, KEYPRESS, KEYPRESSMASK, key_hook, game);
 	mlx_hook(game->window, DESTROYNOTIFY, STRUCTURENOTIFYMASK, exit_hook, game);
 	mlx_loop_hook(game->mlx, loop_hook, game);
-	// game->start_time = clock();
+	create_enemy(game);
 	game->mlx_error_ignore = TRUE;
 	mlx_loop(game->mlx);
 }

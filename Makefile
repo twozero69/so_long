@@ -6,7 +6,7 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/27 17:39:24 by younglee          #+#    #+#              #
-#    Updated: 2022/04/30 23:25:40 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/01 03:12:15 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS		= srcs/main.c \
 			srcs/load.c \
 			srcs/hook.c \
 			srcs/hook_utils.c \
-			srcs/render.c
+			srcs/render.c \
+			srcs/enemy.c
 OBJS		= ${SRCS:.c=.o}
 RM			= rm -f
 GNL_SRCS	= get_next_line/get_next_line.c \
@@ -32,9 +33,9 @@ GNL_INC		= -I./get_next_line
 LIBFT		= -L./libft -lft
 LIBFT_LIB	= libft/libft.a
 LIBFT_INC	= -I./libft
-MLX			= -L./mlx -lmlx_Linux -lXext -lX11 -lm
+MLX			= -L./mlx -lmlx -lXext -lX11 -lm
 # MLX			= -L./mlx -lmlx -framework OpenGL -framework AppKit
-MLX_LIB		= mlx/libmlx_Linux.a
+MLX_LIB		= mlx/libmlx.a
 MLX_INC		= -I./mlx
 
 .c.o:

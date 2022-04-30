@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 01:51:42 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/30 15:53:58 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/01 03:22:09 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void	free_all_resources(t_game *game)
 		free(game->map);
 		game->map = NULL;
 	}
+	ft_lstclear(&game->enemy, free);
 	free_mlx_resources(game);
 }

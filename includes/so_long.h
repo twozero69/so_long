@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:48:39 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/30 23:32:03 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/01 02:31:58 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_game
 	int			height;
 	char		**map;
 	int			collectible;
-	t_list		enemy;
+	t_list		*enemy;
 	int			exit;
 	t_position	position;
 	void		*mlx;
@@ -103,8 +103,16 @@ int		loop_hook(t_game *game);
 
 //hook_utils.c
 void	move_character(int dy, int dx, t_game *game);
+void	move_enemy_list(t_game *game);
 
 //render.c
+void	render_image(int row, int col, void *image, t_game *game);
 void	render(t_game *game);
+
+//enemy.c
+int		check_collision_enemy(int row, int col, t_list *enemy);
+void	create_enemy(t_game *game);
+void	check_enemy(t_game *game);
+void	render_enemy(t_game *game);
 
 #endif

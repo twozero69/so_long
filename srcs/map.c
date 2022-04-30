@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:29:49 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/28 15:26:53 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/30 23:37:38 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <unistd.h>
 #include "so_long.h"
 #include "get_next_line.h"
-#include "libft.h"
 
 static void	open_map(char *file, t_game *game)
 {

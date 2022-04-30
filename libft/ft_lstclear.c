@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:39:23 by younglee          #+#    #+#             */
-/*   Updated: 2022/03/18 16:39:23 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/01 00:17:07 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*next;
 
-	if (lst == 0 || del == 0)
+	if (lst == 0)
 		return ;
 	while (*lst != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:52:54 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/30 23:01:35 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/01 03:44:57 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	exit_with_clib_error(t_game *game)
 	if (errno == 0)
 		return ;
 	printf("Error\n");
-	printf("clib error %d: %s\n", errno, strerror(errno));
+	printf("clib error %d: %s %p\n", errno, strerror(errno), game);
 	free_all_resources(game);
 	exit(errno);
 }
@@ -69,8 +69,10 @@ void	exit_with_mlx_error(int my_errno, t_game *game)
 		printf("Failed to put image to window.\n");
 	else if (my_errno == 5)
 		printf("Failed to clear window.\n");
+	else if (my_errno == 6)
+		printf("Failed to put string.\n");
 	else
-		printf("Invalid error no. %p\n", game);
+		printf("Invalid error no.\n");
 	free_all_resources(game);
 	exit(my_errno);
 }
