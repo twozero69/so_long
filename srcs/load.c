@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 20:30:51 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/29 22:23:15 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/30 15:30:19 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	load_xpm_image(void **image, char *file, t_game *game)
 
 	*image = mlx_xpm_file_to_image(game->mlx, file, &img_width, &img_height);
 	if (*image == NULL || img_width != IMG_SIZE || img_height != IMG_SIZE)
-		exit_with_mlx_error(1, game);
+		exit_with_mlx_error(2, game);
 }
 
 void	load_images(t_game *game)

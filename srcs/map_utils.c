@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 23:35:27 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/28 15:22:06 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/30 17:08:30 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	check_start(int row, int col, t_game *game)
 	if (game->position.row == 0 && game->position.col == 0)
 	{
 		game->position.row = row;
-		game->position.row = col;
+		game->position.col = col;
 		game->map[row][col] = '0';
 		return ;
 	}
