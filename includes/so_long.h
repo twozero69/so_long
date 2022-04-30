@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:48:39 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/30 17:03:47 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/30 23:32:03 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 
 # define FALSE 0
 # define TRUE 1
-# ifndef NULL
-#  define NULL 0
-# endif
+# define FAIL 0
 
 # define IMG_SIZE 64
 # define SPRITE_NUM 4
+# define FPS 30
 
 # ifdef __APPLE__
 #  define W_KEY 13
@@ -41,6 +40,9 @@
 # define DESTROYNOTIFY 17
 # define STRUCTURENOTIFYMASK 0x20000L
 
+# include <time.h>
+# include "libft.h"
+
 typedef struct s_position
 {
 	int		row;
@@ -54,6 +56,7 @@ typedef struct s_game
 	int			height;
 	char		**map;
 	int			collectible;
+	t_list		enemy;
 	int			exit;
 	t_position	position;
 	void		*mlx;
@@ -65,9 +68,11 @@ typedef struct s_game
 	void		*collectible_image;
 	void		*enemy_image[SPRITE_NUM];
 	void		*character_image[SPRITE_NUM];
-	int			frame_count;
+	int			sprite_count;
 	int			move_flag;
 	int			move_count;
+	clock_t		start_time;
+	int			mlx_error_ignore;
 }t_game;
 
 //error.c
@@ -95,5 +100,11 @@ void	load_images(t_game *game);
 int		key_hook(int keycode, t_game *game);
 int		exit_hook(t_game *game);
 int		loop_hook(t_game *game);
+
+//hook_utils.c
+void	move_character(int dy, int dx, t_game *game);
+
+//render.c
+void	render(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:52:54 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/30 15:29:52 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/04/30 23:01:35 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,22 @@ void	exit_with_clib_error(t_game *game)
 
 void	exit_with_mlx_error(int my_errno, t_game *game)
 {
+	if (game->mlx_error_ignore)
+		return ;
 	printf("Error\n");
 	printf("mlx error %d: ", my_errno);
 	if (my_errno == 1)
 		printf("Failed to create mlx instance.\n");
-	if (my_errno == 2)
+	else if (my_errno == 2)
 		printf("Failed to load image.\n");
 	else if (my_errno == 3)
 		printf("Failed to create window.\n");
+	else if (my_errno == 4)
+		printf("Failed to put image to window.\n");
+	else if (my_errno == 5)
+		printf("Failed to clear window.\n");
 	else
-		printf("Invalid error no.\n");
+		printf("Invalid error no. %p\n", game);
 	free_all_resources(game);
 	exit(my_errno);
 }

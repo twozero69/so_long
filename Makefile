@@ -6,7 +6,7 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/27 17:39:24 by younglee          #+#    #+#              #
-#    Updated: 2022/04/30 17:03:15 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/04/30 23:25:40 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRCS		= srcs/main.c \
 			srcs/map_utils.c \
 			srcs/free.c \
 			srcs/load.c \
-			srcs/hook.c
+			srcs/hook.c \
+			srcs/hook_utils.c \
+			srcs/render.c
 OBJS		= ${SRCS:.c=.o}
 RM			= rm -f
 GNL_SRCS	= get_next_line/get_next_line.c \
