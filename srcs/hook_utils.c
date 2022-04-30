@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:20:01 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/01 04:03:16 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/01 04:19:36 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static void	move_enemy(t_position *pos, t_game *game)
 	check_enable_dirs(pos, enable_dir, &enable_cnt, game);
 	if (enable_cnt == 0)
 		return ;
+	srand(clock());
 	next_dir = enable_dir[rand() % enable_cnt];
 	if (next_dir == 0)
 		pos->row--;

@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 01:16:22 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/01 03:47:25 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/01 04:19:24 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ static void	set_random_position(t_position *pos, t_game *game)
 
 	while (TRUE)
 	{
+		srand(clock());
 		row = rand() % game->height;
+		srand(clock());
 		col = rand() % game->width;
 		if (game->map[row][col] != '0')
 			continue ;
