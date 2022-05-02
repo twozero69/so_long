@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:52:54 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/01 03:44:57 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/02 16:03:36 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	exit_with_clib_error(t_game *game)
 	if (errno == 0)
 		return ;
 	printf("Error\n");
-	printf("clib error %d: %s %p\n", errno, strerror(errno), game);
+	printf("clib error %d: %s\n", errno, strerror(errno));
 	free_all_resources(game);
 	exit(errno);
 }

@@ -6,13 +6,13 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/27 17:39:24 by younglee          #+#    #+#              #
-#    Updated: 2022/05/01 03:12:15 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/02 16:04:45 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 INC			= -I./includes
 SRCS		= srcs/main.c \
 			srcs/error.c \
