@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:20:35 by younglee          #+#    #+#             */
-/*   Updated: 2022/03/28 19:01:44 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/03 16:05:31 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static int	check_new_line(char *str, size_t length, ssize_t *new_line_idx)
 	return (0);
 }
 
-static t_list	*get_list_from_head(t_list *head, int fd)
+static t_lst	*get_lst_from_head(t_lst *head, int fd)
 {
-	t_list	*list;
-	t_list	*new_list;
+	t_lst	*list;
+	t_lst	*new_lst;
 
 	list = head;
 	while (list->next != 0)
@@ -45,14 +45,14 @@ static t_list	*get_list_from_head(t_list *head, int fd)
 	}
 	if (list != head && list->fd == fd)
 		return (list);
-	new_list = make_new_list(list, fd);
-	if (new_list == 0)
+	new_lst = make_new_lst(list, fd);
+	if (new_lst == 0)
 		return (0);
-	list->next = new_list;
-	return (new_list);
+	list->next = new_lst;
+	return (new_lst);
 }
 
-static char	*new_line_routine(t_list *list, ssize_t new_line_idx)
+static char	*new_line_routine(t_lst *list, ssize_t new_line_idx)
 {
 	char	*result;
 
@@ -63,7 +63,7 @@ static char	*new_line_routine(t_list *list, ssize_t new_line_idx)
 	return (result);
 }
 
-static char	*read_routine(t_list *list, char *buffer)
+static char	*read_routine(t_lst *list, char *buffer)
 {
 	ssize_t		read_count;
 	ssize_t		new_line_idx;
@@ -75,7 +75,7 @@ static char	*read_routine(t_list *list, char *buffer)
 		read_count = read(list->fd, buffer, BUFFER_SIZE);
 		if (read_count < 0 || (read_count == 0 && list->data_back == 0))
 		{
-			clear_list(list);
+			clear_lst(list);
 			return (0);
 		}
 		if (read_count == 0 && list->data_back != 0)
@@ -93,15 +93,15 @@ static char	*read_routine(t_list *list, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static t_list	head_arr[HASH_SIZE];
-	t_list			*list;
+	static t_lst	head_arr[HASH_SIZE];
+	t_lst			*list;
 	ssize_t			new_line_idx;
 	char			*buffer;
 	char			*result;
 
 	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (0);
-	list = get_list_from_head(&head_arr[fd % HASH_SIZE], fd);
+	list = get_lst_from_head(&head_arr[fd % HASH_SIZE], fd);
 	if (list == 0)
 		return (0);
 	if (check_new_line(list->data, list->data_back, &new_line_idx))
