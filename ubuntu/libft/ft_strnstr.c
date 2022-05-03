@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 12:00:53 by younglee          #+#    #+#             */
-/*   Updated: 2022/03/19 16:39:58 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/03 21:08:59 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		return ((char *)haystack);
 	haystack_len = ft_strlen(haystack);
 	needle_len = ft_strlen(needle);
-	if (len < 0 || len > haystack_len)
+	if (len > haystack_len)
 		last_pt = haystack + haystack_len - needle_len + 1;
 	else
 		last_pt = haystack + len - needle_len + 1;

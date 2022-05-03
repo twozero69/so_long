@@ -44,7 +44,7 @@ static size_t	get_new_len(char const *s1, char const *set)
 	if (s1_len == trim_len)
 		return (0);
 	idx = s1_len - 1;
-	while (idx >= 0 && check_set(s1[idx], set))
+	while (check_set(s1[idx], set))
 	{
 		trim_len++;
 		idx--;
