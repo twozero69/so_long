@@ -6,15 +6,15 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/27 17:39:24 by younglee          #+#    #+#              #
-#    Updated: 2022/05/03 15:54:12 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/09 16:47:51 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror
 INC			= -I./includes
-SRCS		= srcs/main.c \
+M_SRCS		= srcs/main.c \
 			srcs/error.c \
 			srcs/map.c \
 			srcs/map_utils.c \
@@ -24,8 +24,19 @@ SRCS		= srcs/main.c \
 			srcs/hook_utils.c \
 			srcs/render.c \
 			srcs/enemy.c
-OBJS		= ${SRCS:.c=.o}
-RM			= rm -f
+M_OBJS		= ${M_SRCS:.c=.o}
+B_SRCS		= bonus/main_bonus.c \
+			bonus/error_bonus.c \
+			bonus/map_bonus.c \
+			bonus/map_utils_bonus.c \
+			bonus/free_bonus.c \
+			bonus/load_bonus.c \
+			bonus/hook_bonus.c \
+			bonus/hook_utils_bonus.c \
+			bonus/render_bonus.c \
+			bonus/enemy_bonus.c
+B_OBJS		= ${B_SRCS:.c=.o}
+RM			= @rm -f
 GNL_SRCS	= get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c
 GNL_OBJS	= ${GNL_SRCS:.c=.o}
@@ -37,28 +48,41 @@ MLX			= -L./mlx -lmlx -lXext -lX11 -lm
 MLX_LIB		= mlx/libmlx.a
 MLX_INC		= -I./mlx
 
+ifndef WITH_BONUS
+	OBJS	= ${M_OBJS}
+	TRASH	= ${B_OBJS}
+else
+	OBJS	= ${B_OBJS}
+	TRASH	= ${M_OBJS}
+endif
+
+
 .c.o:
 			${CC} ${CFLAGS} ${INC} ${GNL_INC} ${LIBFT_INC} ${MLX_INC} -c $< -o ${<:.c=.o}
 
 ${NAME}: 	${OBJS} ${GNL_OBJS} ${LIBFT_LIB} ${MLX_LIB}
 			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${GNL_OBJS} ${LIBFT} ${MLX}
+			${RM} ${TRASH}
 
 all:		${NAME}
 
 ${LIBFT_LIB}:
-			make bonus -C libft
+			@make bonus -C libft
 
 ${MLX_LIB}:
-			make -C mlx
+			@make -C mlx
 
 clean:
-			${RM} ${OBJS} ${GNL_OBJS}
-			make clean -C libft
-			make clean -C mlx
+			${RM} ${M_OBJS} ${B_OBJS} ${GNL_OBJS}
+			@make clean -C libft
+			@make clean -C mlx
 
 fclean:		clean
 			${RM} ${NAME} ${LIBFT_LIB} ${MLX_LIB}
 
 re:			fclean all
 
-.PHONY:		.c.o clean fclean re
+bonus:
+			@make WITH_BONUS=1 all
+
+.PHONY:		.c.o clean fclean re bonus
