@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 20:30:51 by younglee          #+#    #+#             */
-/*   Updated: 2022/04/30 15:30:19 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 18:41:06 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,5 @@ void	load_images(t_game *game)
 	load_xpm_image(&game->exit_close_image, "images/exit_close.xpm", game);
 	load_xpm_image(&game->exit_open_image, "images/exit_open.xpm", game);
 	load_xpm_image(&game->collectible_image, "images/collectible.xpm", game);
-	load_xpm_image(&game->enemy_image[0], "images/enemy1.xpm", game);
-	load_xpm_image(&game->enemy_image[1], "images/enemy2.xpm", game);
-	load_xpm_image(&game->enemy_image[2], "images/enemy3.xpm", game);
-	load_xpm_image(&game->enemy_image[3], "images/enemy4.xpm", game);
-	load_xpm_image(&game->character_image[0], "images/character1.xpm", game);
-	load_xpm_image(&game->character_image[1], "images/character2.xpm", game);
-	load_xpm_image(&game->character_image[2], "images/character3.xpm", game);
-	load_xpm_image(&game->character_image[3], "images/character4.xpm", game);
+	load_xpm_image(&game->character_image, "images/character1.xpm", game);
 }

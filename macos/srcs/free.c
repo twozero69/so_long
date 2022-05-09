@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 01:51:42 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/03 15:13:23 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 18:47:46 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,6 @@ static void	free_mlx_image(void *mlx, void **image)
 {
 	mlx_destroy_image(mlx, *image);
 	*image = NULL;
-}
-
-static void	free_enemy_resources(t_game *game)
-{
-	int	idx;
-
-	idx = 0;
-	while (idx < SPRITE_NUM)
-	{
-		if (game->enemy_image[idx] != NULL)
-			free_mlx_image(game->mlx, &game->enemy_image[idx]);
-		idx++;
-	}
-}
-
-static void	free_character_resources(t_game *game)
-{
-	int	idx;
-
-	idx = 0;
-	while (idx < SPRITE_NUM)
-	{
-		if (game->character_image[idx] != NULL)
-			free_mlx_image(game->mlx, &game->character_image[idx]);
-		idx++;
-	}
 }
 
 static void	free_mlx_resources(t_game *game)
@@ -61,8 +35,8 @@ static void	free_mlx_resources(t_game *game)
 		free_mlx_image(game->mlx, &game->exit_open_image);
 	if (game->collectible_image != NULL)
 		free_mlx_image(game->mlx, &game->collectible_image);
-	free_enemy_resources(game);
-	free_character_resources(game);
+	if (game->character_image != NULL)
+		free_mlx_image(game->mlx, &game->character_image);
 }
 
 void	free_all_resources(t_game *game)
@@ -86,6 +60,5 @@ void	free_all_resources(t_game *game)
 		free(game->map);
 		game->map = NULL;
 	}
-	ft_lstclear(&game->enemy, free);
 	free_mlx_resources(game);
 }

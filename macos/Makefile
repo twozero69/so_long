@@ -6,13 +6,13 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/27 17:39:24 by younglee          #+#    #+#              #
-#    Updated: 2022/05/09 18:37:32 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/09 18:51:22 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror
 INC			= -I./includes
 M_SRCS		= srcs/main.c \
 			srcs/error.c \
@@ -43,7 +43,6 @@ GNL_INC		= -I./get_next_line
 LIBFT		= -L./libft -lft
 LIBFT_LIB	= libft/libft.a
 LIBFT_INC	= -I./libft
-# MLX			= -L./mlx -lmlx -lXext -lX11 -lm
 MLX			= -L./mlx -lmlx -framework OpenGL -framework AppKit
 MLX_LIB		= mlx/libmlx.a
 MLX_INC		= -I./mlx
