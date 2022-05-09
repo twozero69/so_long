@@ -6,14 +6,14 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 01:51:42 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 16:26:51 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 17:11:39 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "mlx.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	free_mlx_image(void *mlx, void **image)
 {

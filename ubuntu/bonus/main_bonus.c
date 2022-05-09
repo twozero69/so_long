@@ -6,13 +6,13 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 16:26:58 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 17:12:00 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "mlx.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	init_game(t_game *game)
 {

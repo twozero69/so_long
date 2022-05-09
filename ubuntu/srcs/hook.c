@@ -6,11 +6,12 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:27:45 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/01 02:22:46 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 18:01:30 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "mlx.h"
 #include "so_long.h"
 
@@ -75,13 +76,9 @@ int	loop_hook(t_game *game)
 	if (current_fps >= FPS)
 		return (0);
 	game->start_time = end_time;
-	if (game->sprite_count == 3)
-		move_enemy_list(game);
 	check_collectible(game);
-	check_enemy(game);
 	check_exit(game);
 	game->move_flag = TRUE;
 	render(game);
-	game->sprite_count = (game->sprite_count + 1) % SPRITE_NUM;
 	return (0);
 }

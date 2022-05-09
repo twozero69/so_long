@@ -6,11 +6,11 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 23:35:27 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 16:27:01 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 17:12:08 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	check_argc(int argc, t_game *game)
 {

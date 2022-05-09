@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 01:16:22 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 16:26:48 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 17:11:31 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include "mlx.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	check_collision_enemy(int row, int col, t_list *enemy)
 {

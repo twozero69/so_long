@@ -6,14 +6,14 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:20:01 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 16:26:54 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 17:11:50 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "mlx.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	move_character(int dy, int dx, t_game *game)
 {

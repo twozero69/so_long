@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:46:11 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/03 15:54:39 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 18:02:52 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	play_game(t_game *game)
 	mlx_hook(game->window, KEYPRESS, KEYPRESSMASK, key_hook, game);
 	mlx_hook(game->window, DESTROYNOTIFY, STRUCTURENOTIFYMASK, exit_hook, game);
 	mlx_loop_hook(game->mlx, loop_hook, game);
-	create_enemy(game);
 	game->mlx_error_ignore = TRUE;
 	mlx_loop(game->mlx);
 }

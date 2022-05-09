@@ -6,14 +6,14 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:29:49 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 16:26:59 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 17:12:04 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include "get_next_line.h"
 
 static void	open_map(char *file, t_game *game)

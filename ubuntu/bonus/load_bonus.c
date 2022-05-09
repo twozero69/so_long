@@ -6,12 +6,12 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 20:30:51 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 16:26:56 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 17:11:54 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	load_xpm_image(void **image, char *file, t_game *game)
 {

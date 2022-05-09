@@ -6,13 +6,13 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:27:45 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 16:26:53 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 17:11:46 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "mlx.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	check_exit(t_game *game)
 {

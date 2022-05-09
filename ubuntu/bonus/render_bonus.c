@@ -6,14 +6,14 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:11:55 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 16:27:03 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 17:12:13 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <errno.h>
 #include "mlx.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	render_image(int row, int col, void *image, t_game *game)
 {
