@@ -6,13 +6,13 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/27 17:39:24 by younglee          #+#    #+#              #
-#    Updated: 2022/05/09 18:51:22 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/11 23:49:36 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 INC			= -I./includes
 M_SRCS		= srcs/main.c \
 			srcs/error.c \
@@ -36,16 +36,30 @@ B_SRCS		= bonus/main_bonus.c \
 			bonus/enemy_bonus.c
 B_OBJS		= ${B_SRCS:.c=.o}
 RM			= @rm -f
+
 GNL_SRCS	= get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c
 GNL_OBJS	= ${GNL_SRCS:.c=.o}
 GNL_INC		= -I./get_next_line
+
 LIBFT		= -L./libft -lft
 LIBFT_LIB	= libft/libft.a
 LIBFT_INC	= -I./libft
-MLX			= -L./mlx -lmlx -framework OpenGL -framework AppKit
-MLX_LIB		= mlx/libmlx.a
-MLX_INC		= -I./mlx
+LIBFT_DIR	= libft
+
+KERNEL		:= ${shell uname -s}
+ifeq (${KERNEL}, Darwin)
+	MLX		= -L./minilibx-apple -lmlx -framework OpenGL -framework AppKit
+	MLX_LIB	= minilibx-apple/libmlx.a
+	MLX_INC	= -I./minilibx-apple
+	MLX_DIR = minilibx-apple
+endif
+ifeq (${KERNEL}, Linux)
+	MLX		= -L./minilibx-linux -lmlx -lXext -lX11 -lm
+	MLX_LIB	= minilibx-linux/libmlx.a
+	MLX_INC	= -I./minilibx-linux
+	MLX_DIR = minilibx-linux
+endif
 
 ifndef WITH_BONUS
 	OBJS	= ${M_OBJS}
@@ -66,15 +80,15 @@ ${NAME}: 	${OBJS} ${GNL_OBJS} ${LIBFT_LIB} ${MLX_LIB}
 all:		${NAME}
 
 ${LIBFT_LIB}:
-			@make bonus -C libft
+			@make bonus -C ${LIBFT_DIR}
 
 ${MLX_LIB}:
-			@make -C mlx
+			@make -C ${MLX_DIR}
 
 clean:
 			${RM} ${M_OBJS} ${B_OBJS} ${GNL_OBJS}
-			@make clean -C libft
-			@make clean -C mlx
+			@make clean -C ${LIBFT_DIR}
+			@make clean -C ${MLX_DIR}
 
 fclean:		clean
 			${RM} ${NAME} ${LIBFT_LIB} ${MLX_LIB}
