@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:20:01 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 18:48:13 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/12 00:34:46 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void	move_character(int dy, int dx, t_game *game)
 	int	next_row;
 	int	next_col;
 
-	if (!game->move_flag)
-		return ;
-	game->move_flag = FALSE;
 	next_row = game->position.row + dy;
 	next_col = game->position.col + dx;
 	if (game->map[next_row][next_col] != '1')

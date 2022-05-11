@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:27:45 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 18:42:38 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/12 00:34:12 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ static void	check_exit(t_game *game)
 	exit(0);
 }
 
+static void	check_collectible(t_game *game)
+{
+	int	row;
+	int	col;
+
+	row = game->position.row;
+	col = game->position.col;
+	if (game->map[row][col] != 'C')
+		return ;
+	game->map[row][col] = '0';
+	game->collectible--;
+}
+
 int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == W_KEY)
@@ -45,6 +58,9 @@ int	key_hook(int keycode, t_game *game)
 		free_all_resources(game);
 		exit(0);
 	}
+	check_collectible(game);
+	check_exit(game);
+	render(game);
 	return (0);
 }
 
@@ -53,35 +69,5 @@ int	exit_hook(t_game *game)
 	printf("You press Exit button. Give up the game\n");
 	free_all_resources(game);
 	exit(0);
-	return (0);
-}
-
-static void	check_collectible(t_game *game)
-{
-	int	row;
-	int	col;
-
-	row = game->position.row;
-	col = game->position.col;
-	if (game->map[row][col] != 'C')
-		return ;
-	game->map[row][col] = '0';
-	game->collectible--;
-}
-
-int	loop_hook(t_game *game)
-{
-	clock_t	end_time;
-	double	current_fps;
-
-	end_time = clock();
-	current_fps = CLOCKS_PER_SEC / (double)(end_time - game->start_time);
-	if (current_fps >= FPS)
-		return (0);
-	game->start_time = end_time;
-	check_collectible(game);
-	check_exit(game);
-	game->move_flag = TRUE;
-	render(game);
 	return (0);
 }

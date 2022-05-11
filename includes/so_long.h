@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 22:48:39 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 18:45:13 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/12 00:35:39 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define DESTROYNOTIFY 17
 # define STRUCTURENOTIFYMASK 0x20000L
 
-# include <time.h>
+# include <stddef.h>
 # include "libft.h"
 
 typedef struct s_position
@@ -65,9 +65,7 @@ typedef struct s_game
 	void		*exit_open_image;
 	void		*collectible_image;
 	void		*character_image;
-	int			move_flag;
 	int			move_count;
-	clock_t		start_time;
 	int			mlx_error_ignore;
 }t_game;
 
@@ -95,7 +93,6 @@ void	load_images(t_game *game);
 //hook.c
 int		key_hook(int keycode, t_game *game);
 int		exit_hook(t_game *game);
-int		loop_hook(t_game *game);
 
 //hook_utils.c
 void	move_character(int dy, int dx, t_game *game);
