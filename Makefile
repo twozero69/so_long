@@ -98,4 +98,4 @@ re:			fclean all
 bonus:
 			@make WITH_BONUS=1 all
 
-.PHONY:		.c.o clean fclean re bonus
+.PHONY:		.c.o all clean fclean re bonus
