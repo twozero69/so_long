@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:27:45 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 18:33:01 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/13 22:35:08 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,13 @@ int	loop_hook(t_game *game)
 	if (current_fps >= FPS)
 		return (0);
 	game->start_time = end_time;
-	if (game->sprite_count == 3)
-		move_enemy_list(game);
 	check_collectible(game);
 	check_enemy(game);
+	if (game->sprite_count == 3)
+	{
+		move_enemy_list(game);
+		check_enemy(game);
+	}
 	check_exit(game);
 	game->move_flag = TRUE;
 	render(game);
